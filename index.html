@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Binary Numbers</title>
+    <style>
+      .container {
+        display: flex;
+        font-family: 'Courier New', Courier, monospace;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 50px;
+      }
+
+      .row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-top: 100px;
+      }
+
+      .square {
+        width: 50px;
+        height: 50px;
+        border-radius: 10%;
+        background-color: green;
+        margin-right: 0px;
+        text-align: center;
+        line-height: 50px;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+      }
+
+      .number {
+        text-align: center;
+        font-size: 24px;
+      }
+
+      .result {
+        width: 70px;
+        height: 50px;
+        border-radius: 10%;
+        background-color: gray;
+        text-align: center;
+        line-height: 50px;
+        color: white;
+        font-size: 24px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 style="font-family: Arial, Helvetica, sans-serif;">Binary Numbers</h1>
+      <h4 style="font-family: Arial, Helvetica, sans-serif;">Click on the green boxes to set a binary number.</h4>
+      <div class="row">
+        <div class="square">0</div>
+        <span class="number">&middot;2<sup>0</sup>+</span>
+        <div class="square">0</div>
+        <span class="number">&middot;2<sup>1</sup>+</span>
+        <div class="square">0</div>
+        <span class="number">&middot;2<sup>2</sup>+</span>
+        <div class="square">0</div>
+        <span class="number">&middot;2<sup>3</sup>=</span>
+        <div class="result">0</div>
+      </div>
+
+    </div>
+    <script>
+      // Get the green squares
+      const squares = document.querySelectorAll('.square');
+
+      // Add event listeners to each square
+      squares.forEach((square) => {
+        square.addEventListener('click', () => {
+          // Toggle the value of the square
+          if (square.textContent === '0') {
+            square.textContent = '1';
+          } else {
+            square.textContent = '0';
+          }
+
+          // Compute the binary number
+          const binary = Array.from(squares)
+            .map((square) => square.textContent)
+            .reverse()
+            .join('');
+
+          // Convert the binary number to decimal
+          const decimal = parseInt(binary, 2);
+
+          // Display the decimal number
+          document.querySelector('.result').textContent = decimal;
+        });
+      });
+    </script>
+  </body>
+</html>
